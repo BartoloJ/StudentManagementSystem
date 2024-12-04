@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StudentManagementSystem.Data;
+using StudentManagementSystem.Models;
 
 namespace StudentManagementSystem.Controllers
 {
@@ -178,6 +179,24 @@ namespace StudentManagementSystem.Controllers
             _context.Students.Add(student);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetStudent), new { id = student.Id }, student);
+        }
+
+        public async Task<IActionResult> StudentList()
+        {
+            var students = await _context.Students.ToListAsync();
+            return View(students);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddStudent(Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(student);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(StudentList));
+            }
+            return View(student);
         }
 
     }
