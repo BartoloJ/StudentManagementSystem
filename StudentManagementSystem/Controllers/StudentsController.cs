@@ -113,7 +113,7 @@ namespace StudentManagementSystem.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(StudentList));
             }
             return View(student);
         }
