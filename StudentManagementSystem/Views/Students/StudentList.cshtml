@@ -9,6 +9,7 @@
             <th>Roll No</th>
             <th>Section</th>
             <th>Program</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -19,6 +20,12 @@
                 <td>@student.RollNo</td>
                 <td>@student.Section</td>
                 <td>@student.Program</td>
+                <td>
+                    <a asp-controller="Students" asp-action="Delete" asp-route-id="@student.Id"
+                        class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i> Delete
+                    </a>
+                </td>
             </tr>
         }
     </tbody>

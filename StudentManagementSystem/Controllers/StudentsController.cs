@@ -148,7 +148,7 @@ namespace StudentManagementSystem.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("StudentList", "Students");
         }
 
         private bool StudentExists(int id)
